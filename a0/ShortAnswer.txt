@@ -9,13 +9,13 @@ Trump.
 
 How is this approach misleading? How might you fix it?
 
-
-
-
-
-
-
-
+	Because Donald only follow 45 users on twitter, whereas Gary follow more 
+than 3K users. As they are all politician, if one follow much more users, it 
+easy to have much more overlapped friends than others.
+	We should make analysis of these overlapped friends. Classify them into 
+different categories. Focus on internets or sports, which shows more about 
+personality. Also, we should analyze tweet words. What they said show more 
+about the real interest they have. 
 
 
 2. Looking at the output of your followed_by_hillary_and_donald function, why
@@ -23,28 +23,20 @@ do you think this user is followed by both Hilary Clinton and Donald Trump,
 who are rivals? Do some web searches to see if you can find out more
 information.
 
-
-
-
-
-
-
-
-
-
-
+	Because they are candidates of president election 2016. Both of them want 
+to work in the white house. 
 
 
 3. There is a big difference in how many accounts each candidate follows (Gary
 Johnson follows over 3K accounts, while Donald Trump follows less than
 50). Why do you think this is? How might that affect our analysis?
 
-
-
-
-
-
-
+	I think it is because of the different personality of users.  It’s possible 
+that Gray want to use twitter to connect with other people, and make it a real 
+social network. However, Trump use this platform to announce his statement and 
+show his opinion to the whole world.
+	It will make our analysis not reflect the real result of them. For better 
+results, I think we should analyze the words usage of their tweet.
 
 
 4. The follower graph we've collected is incomplete. To expand it, we would
@@ -55,3 +47,8 @@ https://dev.twitter.com/rest/reference/get/friends/ids, how many requests will
 we have to make? Given how Twitter does rate limiting
 (https://dev.twitter.com/rest/public/rate-limiting), approximately how many
 minutes will it take to collect this data?
+
+	As we want to all the accounts followed by each of the friends of Donald 
+Trump. We have to make 45 requests.
+	 15 calls every 15 minutes, and 180 calls every 15 minutes. According to it, 
+we need around 45 Minutes to collect this data.
