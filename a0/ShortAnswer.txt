@@ -10,8 +10,9 @@ Trump.
 How is this approach misleading? How might you fix it?
 
 	Because Donald only follow 45 users on twitter, whereas Gary follow more 
-than 3K users. As they are all politician, if one follow much more users, it 
-easy to have much more overlapped friends than others.
+than 3K users. As they are all politicians, if one follow much more users, it 
+easy to have much more overlapped friends than others. In this case, only count 
+the overlapped friends will comes to the useless result.
 	We should make analysis of these overlapped friends. Classify them into 
 different categories. Focus on internets or sports, which shows more about 
 personality. Also, we should analyze tweet words. What they said show more 
@@ -50,5 +51,5 @@ minutes will it take to collect this data?
 
 	As we want to all the accounts followed by each of the friends of Donald 
 Trump. We have to make 45 requests.
-	 15 calls every 15 minutes, and 180 calls every 15 minutes. According to it, 
+	15 calls every 15 minutes, and 180 calls every 15 minutes. According to it, 
 we need around 45 Minutes to collect this data.
