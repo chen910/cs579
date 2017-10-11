@@ -1,0 +1,75 @@
+Grade: 44.00/50.00
+
+3 Deduction(s):
+
+--------------
+#1: 2.00 points
+Failing test: test_approx_bet_1: 
+        @points=2
+        
+Traceback (most recent call last):
+  File "../assignments-sol/a1/a1_test.py", line 183, in test_approx_bet_1
+    self.assertListEqual(res, [(('A', 'B'), 5.0), (('A', 'C'), 1.0), (('B', 'C'), 5.0), (('B', 'D'), 12.0), (('D', 'E'), 4.5), (('D', 'F'), 4.0), (('D', 'G'), 4.5), (('E', 'F'), 1.5), (('F', 'G'), 1.5)])
+AssertionError: Lists differ: [(('A', 'B'), 0.5), (('A', 'C'), 2.0), (('B', 'C'), 0.5[115 chars].75)] != [(('A', 'B'), 5.0), (('A', 'C'), 1.0), (('B', 'C'), 5.0[112 chars]1.5)]
+
+First differing element 0:
+(('A', 'B'), 0.5)
+(('A', 'B'), 5.0)
+
+Diff is 762 characters long. Set self.maxDiff to None to see it.
+
+source:
+    def test_approx_bet_1(self):
+         """
+         @points=2
+         """
+         res = sorted(approximate_betweenness(example_graph(), 5).items())
+         self.assertListEqual(res, [(('A', 'B'), 5.0), (('A', 'C'), 1.0), (('B', 'C'), 5.0), (('B', 'D'), 12.0), (('D', 'E'), 4.5), (('D', 'F'), 4.0), (('D', 'G'), 4.5), (('E', 'F'), 1.5), (('F', 'G'), 1.5)])
+--------------
+
+--------------
+#2: 2.00 points
+Failing test: test_approx_bet_2: 
+        @points=2
+        
+Traceback (most recent call last):
+  File "../assignments-sol/a1/a1_test.py", line 190, in test_approx_bet_2
+    self.assertListEqual(res, [(('A', 'B'), 2.0), (('A', 'C'), 1.0), (('B', 'C'), 2.0), (('B', 'D'), 6.0), (('D', 'E'), 2.5), (('D', 'F'), 2.0), (('D', 'G'), 2.5), (('E', 'F'), 1.5), (('F', 'G'), 1.5)])
+AssertionError: Lists differ: [(('A', 'B'), 4.0), (('A', 'C'), 2.0), (('B', 'C'), 4.0[115 chars].75)] != [(('A', 'B'), 2.0), (('A', 'C'), 1.0), (('B', 'C'), 2.0[111 chars]1.5)]
+
+First differing element 0:
+(('A', 'B'), 4.0)
+(('A', 'B'), 2.0)
+
+Diff is 753 characters long. Set self.maxDiff to None to see it.
+
+source:
+    def test_approx_bet_2(self):
+         """
+         @points=2
+         """
+         res = sorted(approximate_betweenness(example_graph(), 2).items())
+         self.assertListEqual(res, [(('A', 'B'), 2.0), (('A', 'C'), 1.0), (('B', 'C'), 2.0), (('B', 'D'), 6.0), (('D', 'E'), 2.5), (('D', 'F'), 2.0), (('D', 'G'), 2.5), (('E', 'F'), 1.5), (('F', 'G'), 1.5)])
+--------------
+
+--------------
+#3: 2.00 points
+Failing test: test_approx_right: 
+        @points=2
+        
+Traceback (most recent call last):
+  File "../assignments-sol/a1/a1_test.py", line 197, in test_approx_right
+    self.assertEqual('no', is_approximation_always_right().lower())
+AssertionError: 'no' != 'yes'
+- no
++ yes
+
+
+source:
+    def test_approx_right(self):
+         """
+         @points=2
+         """
+         self.assertEqual('no', is_approximation_always_right().lower())
+--------------
+
