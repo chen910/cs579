@@ -94,30 +94,17 @@ def tokenize(doc, keep_internal_punct=False):
     array(['hi', 'there', "isn't", 'this', 'fun'], 
           dtype='<U5')
     """
-    # if keep_internal_punct == True:
-    #     newDoc = doc.lower().split()
-    #     splitDoc = []
-    #     for w in newDoc:
-    #         if not all(c in string.punctuation for c in w):
-    #             w.strip(string.punctuation)
-    #             splitDoc.append(w)
-    #     return np.array(splitDoc)
-    # else:
-    #     splitDoc = re.sub('\W+', ' ', doc.lower()).split()
-    #     return np.array(splitDoc)
-    if keep_internal_punct== False:
-        return np.array(re.sub('\W+', ' ', doc.lower()).split())
+    splitDoc = []
+    if keep_internal_punct == True:
+        newDoc = doc.lower().split()
+        for w in newDoc:
+            if not all(c in string.punctuation for c in w):
+                w = w.strip(string.punctuation)
+                splitDoc.append(w)
+        return np.array(splitDoc)
     else:
-        substring= str.lower(doc).split()
-        sublist=[]
-        for s in substring:
-            if not all(j in string.punctuation for j in s):
-                while s[-1] in string.punctuation:
-                    s=s[:-1]
-                while s[0] in string.punctuation:
-                    s=s[1:]
-                sublist.append(s)       
-        return np.array(sublist)
+        splitDoc = re.sub('\W+', ' ', doc.lower()).split()
+        return np.array(splitDoc)
 
 
 def token_features(tokens, feats):
