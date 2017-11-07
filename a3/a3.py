@@ -83,7 +83,7 @@ def featurize(movies):
     # compute vocab
     termCount = Counter()
     for i in movies['tokens']:
-        termCount.update(i)
+        termCount.update(set(i))
     vocab = {term : num for num, term in enumerate(sorted(termCount))}
     # modify movies
     column_nums = len(vocab)
