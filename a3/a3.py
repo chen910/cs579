@@ -51,8 +51,11 @@ def tokenize(movies):
     >>> movies['tokens'].tolist()
     [['horror', 'romance'], ['sci-fi']]
     """
-    ###TODO
-    pass
+    tokenList = []
+    for i in movies['genres']:
+        tokenList.append(tokenize_string(i))
+    movies['tokens'] = tokenList
+    return movies
 
 
 def featurize(movies):
@@ -77,8 +80,30 @@ def featurize(movies):
       - The movies DataFrame, which has been modified to include a column named 'features'.
       - The vocab, a dict from term to int. Make sure the vocab is sorted alphabetically as in a2 (e.g., {'aardvark': 0, 'boy': 1, ...})
     """
-    ###TODO
-    pass
+    # compute vocab
+    termCount = Counter()
+    for i in movies['tokens']:
+        termCount.update(i)
+    vocab = {term : num for num, term in enumerate(sorted(termCount))}
+    # modify movies
+    column_nums = len(vocab)
+    matrixList = []
+    N = len(movies)
+    for i in movies['tokens']:
+        termCount1 = Counter(i)
+        total = sum(termCount1.values())
+        max_k = max(termCount1.values())
+        tfidf = []
+        for term, tf in termCount1.items():
+            df = termCount[term]
+            tfidf.append(tf / max_k * math.log10(N / df))
+        row = [0] * len(termCount1)
+        col = []
+        for i in termCount1:
+            col.append(vocab[i])
+        matrixList.append(csr_matrix((tfidf, (row, col)), shape=(1, column_nums)))
+    movies['features'] = matrixList
+    return(movies, vocab)
 
 
 def train_test_split(ratings):
@@ -103,7 +128,7 @@ def cosine_sim(a, b):
       where ||a|| indicates the Euclidean norm (aka L2 norm) of vector a.
     """
     ###TODO
-    pass
+    return np.dot(a, b.T).toarray()[0][0] / (np.linalg.norm(a.toarray()) * np.linalg.norm(b.toarray()))
 
 
 def make_predictions(movies, ratings_train, ratings_test):
@@ -129,7 +154,23 @@ def make_predictions(movies, ratings_train, ratings_test):
       A numpy array containing one predicted rating for each element of ratings_test.
     """
     ###TODO
-    pass
+    result = []
+    for i, row in ratings_test.iterrows():
+        iFeature = movies.loc[movies['movieId'] == row['movieId']].squeeze()['features']
+        trainMovie = ratings_train.loc[ratings_train['userId'] == row['userId']]
+        cosList = []
+        cosSum = 0
+        for i1, row1 in trainMovie.iterrows():
+            tFeature = movies.loc[movies['movieId'] == row1['movieId']].squeeze()['features']
+            cosSim = cosine_sim(iFeature, tFeature)
+            if cosSim > 0:
+                cosList.append(cosSim * row1['rating']);
+                cosSum += cosSim
+        if cosSum > 0:
+            result.append(sum(cosList) / cosSum)
+        else:
+            result.append(trainMovie['rating'].mean()) 
+    return np.array(result)
 
 
 def mean_absolute_error(predictions, ratings_test):
@@ -140,7 +181,7 @@ def mean_absolute_error(predictions, ratings_test):
 
 
 def main():
-    download_data()
+    # download_data()
     path = 'ml-latest-small'
     ratings = pd.read_csv(path + os.path.sep + 'ratings.csv')
     movies = pd.read_csv(path + os.path.sep + 'movies.csv')
