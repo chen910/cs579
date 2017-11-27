@@ -1,0 +1,26 @@
+Number of users collected: 951
+
+Number of messages collected: 1000
+
+Number of communities discovered: 95
+
+Average number of users per community: 10.010526
+
+positive class found 205 instiances.
+
+neutral class found 693 instiances.
+
+negative class found 102 instiances.
+
+positive class example: 
+I liked a @YouTube video https://t.co/DbP47pq1tm LeBron James or Kyrie Irving: Who's more clutch? | The Jump | ESPN
+score = 2
+
+neutral class example: 
+RT @richardhtx: @david87263 @young___o @holdengumb @VoodooKick @nicatjersey777 @KingJames They made it all the way to the Finals with him.…
+score = 0
+
+negative class example: 
+RT @CelticsExtra: Kyrie Irving is leading a young team to the best record in the league but yet haters are still doubting his leadership ht…
+score = -1
+

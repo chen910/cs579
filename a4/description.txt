@@ -1,0 +1,43 @@
+Running step:
+    1. collect.py   output ... 'searchResults.json'
+
+    2. cluster.py   output ... 'clusters.json'
+
+    3. classify.py  output ... 'positive.json', 'neutral.json', 'negative.json'
+
+    4. summarize.py  output ... 'summarize.txt'
+
+File description:
+    1. collect.py:
+        Use TwitterAPI fetch tweets with keyword 'kyrie irving' for ten times get about 1000 tweets.
+        store them into a json file called 'searchResults.json'.data store in original json format.
+
+    2. cluster.py:
+        Load tweets which get from previous step. get all @ users in the 'text' part of tweets.
+        build networkx graph by mentioned users. Then, use partition_girvan_newman algorithm  to 
+        partition users to clusters. Store clusters with 'screen_name' in to json file 'clusters.json'.
+
+    3. classify.py:
+        Tokenize tweets and store in list. use AFINN data to score the tokens, rate tweets use scores.
+        Classify them into positive, neutral  and negative. store these data in format(tweet, score) into 
+        three file 'positive.json', 'neutral.json', 'negative.json'.
+
+    4. summarize.py:
+        read all the data we got from previous step. write results in to 'summraize.txt'.
+        containing the following entries:
+            Number of users collected
+            Number of messages collected
+            Number of communities discovered
+            Average number of users per community
+            Number of instances per class found
+            One example from each class
+
+Conclusion:
+    1. As kyrie perform well in NBA, the neutral and positive tweet is increasing and only a few tweets are negative.
+    2. the attitude of users will change frequently after each match.
+    3. retweet about youtube video will influence the result, because most of youtube title are sharp, they may be very 
+    positive or very negative.
+    4. AFINN will misclassify datas as the words of users used are around the neutral.
+
+
+
