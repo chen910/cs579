@@ -32,18 +32,18 @@ def jaccard_wt(graph, node):
     scores = sorted(scores, key=lambda x: (-x[1], x[0][1]))
     return scores
 
-def example_graph():
-    """
-    Create the example graph from class. Used for testing.
-    Do not modify.
-    """
-    g = nx.Graph()
-    g.add_edges_from([('A', 'B'), ('A', 'C'), ('B', 'C'), ('B', 'D'), ('D', 'E'), ('D', 'F'), ('D', 'G'), ('E', 'F'), ('G', 'F')])
-    return g
+# def example_graph():
+#     """
+#     Create the example graph from class. Used for testing.
+#     Do not modify.
+#     """
+#     g = nx.Graph()
+#     g.add_edges_from([('A', 'B'), ('A', 'C'), ('B', 'C'), ('B', 'D'), ('D', 'E'), ('D', 'F'), ('D', 'G'), ('E', 'F'), ('G', 'F')])
+#     return g
 
-def main():
-    g = example_graph()
-    print(jaccard_wt(g, 'D'))
+# def main():
+#     g = example_graph()
+#     print(jaccard_wt(g, 'D'))
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()
