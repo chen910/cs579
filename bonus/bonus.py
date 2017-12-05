@@ -14,22 +14,22 @@ def jaccard_wt(graph, node):
     """
     neighbors = set(graph.neighbors(node))
     scores = []
-    nodeScore = 0
-    ADegrees = 0
-    BDegress = 0
-    for i in neighbors:
-        ADegrees += len(graph.neighbors(i))
     for n in graph.nodes():
-        if n not in neighbors and n != node:
+        if (n not in neighbors) and (n != node):
             neighbors2 = set(graph.neighbors(n))
-    for j in neighbors2:
-        BDegress += len(graph.neighbors(j))
-    for n in neighbors:
-        if n not in neighbors2:
-            nodeScore += 1 / len(graph.neighbors(n))
-    scores.append(((node, i), nodeScore / ((1 / ADegrees) + (1 / BDegress))))
+            nodeScore = 0
+            ADegrees = 0
+            BDegress = 0
+            for i in neighbors:
+                ADegrees += len(graph.neighbors(i))
+            for j in neighbors2:
+                BDegress += len(graph.neighbors(j))            
+            for common in neighbors:
+                if common  in neighbors2:
+                    nodeScore += 1 / len(graph.neighbors(common))
+            scores.append(((node, n), nodeScore / ((1 / ADegrees) + (1 / BDegress))))
 
-    scores = sorted(scores, key=lambda x: (-x[1], x[0][1]))
+    scores = sorted(scores, key=lambda x: x[0])
     return scores
 
 # def example_graph():
@@ -43,7 +43,7 @@ def jaccard_wt(graph, node):
 
 # def main():
 #     g = example_graph()
-#     print(jaccard_wt(g, 'D'))
+#     print(jaccard_wt(g, 'G'))
 
 # if __name__ == '__main__':
 #     main()
